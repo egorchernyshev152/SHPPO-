@@ -18,11 +18,16 @@ public class ControlPanelProxyImpl implements ControlPanelProxy{
         this.controlPanel = controlPanel;
         this.logger = Logger.getLogger(ControlPanelProxyImpl.class.getName());
         this.cache = new HashMap<>();
-        if (checking()) {
-            System.out.println("С возвращением, пользователь!!!");
-        } else{
-            System.out.println("ИМПОСТЕР!!! Доступ закрыт! Программа отключается...");
-            System.exit(0); // Завершаем программу
+        System.out.println(" ");
+        System.out.println("Но сначала удостоверимся, что Вы не посторонний пользователь :)");
+        boolean isAuthenticated = false;
+        while (!isAuthenticated) {
+            if (checking()) {
+                System.out.println("С возвращением, пользователь!!!");
+                isAuthenticated = true;
+            } else {
+                System.out.println("Неверный пароль. Попробуйте еще раз.");
+            }
         }
     }
 
@@ -93,7 +98,6 @@ public class ControlPanelProxyImpl implements ControlPanelProxy{
     private boolean checking() {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.println("Но сначала удостоверимся, что Вы не посторонний пользователь :)");
         System.out.println("Введите пароль: ");
         String password = scanner.nextLine();
 

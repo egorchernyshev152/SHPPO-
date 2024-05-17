@@ -1,6 +1,7 @@
 package com.egorka.lr2v1;
 
 import com.egorka.lr2v1.service.*;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -37,7 +38,14 @@ public class Lr2v1Application {
             System.out.println("3. Отвязать кнопку от лампы");
             System.out.println("4. Выйти");
 
-            int choice = requestIntegerInput(scanner, "Ваше действие:");
+            int choice;
+            do {
+                choice = requestIntegerInput(scanner, "Ваше действие:");
+                if (choice < 1 || choice > 4) {
+                    System.out.println("Неверный выбор. Повторите ввод.");
+                }
+            } while (choice < 1 || choice > 4);
+
             handlerChain.handleRequest(choice, proxy, scanner);
 
             if (choice == 4) {

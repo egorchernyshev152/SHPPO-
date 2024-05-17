@@ -31,8 +31,8 @@ public class ControlPanel implements ControlPanelProxy { // version 1
     }
 
     public ControlPanel() {
-        this.width = 3;
-        this.height = 3;
+        this.width = 5;
+        this.height = 5;
         this.buttons = new ArrayList<>();
         this.lamps = new ArrayList<>();
     }
@@ -114,7 +114,7 @@ public class ControlPanel implements ControlPanelProxy { // version 1
             System.out.println(" ");
             return;
         }
-        if ((x < 1) || (x >= width) || (y < 1) || (y >= height)) { // Проверяем, находятся ли координаты кнопки в пределах допустимого диапазона
+        if ((x < 1) || (x >= width+1) || (y < 1) || (y >= height+1)) { // Проверяем, находятся ли координаты кнопки в пределах допустимого диапазона
             System.out.println("Неверные координаты кнопки. Повторите ввод.");
             System.out.println(" ");
             return;

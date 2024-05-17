@@ -9,16 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 @Service
 public class RequestHandlerChain {
+    @Autowired
     private final List<RequestHandler> handlers = new ArrayList<>();
-    @Autowired
-    private ButtonPressHandler buttonPressHandler;
 
-    @Autowired
-    private LampBindingHandler lampBindingHandler;
-
-    @Autowired
-    private LampUnlinkHandler lampUnlinkHandler;
-    @Autowired
     public RequestHandlerChain(ButtonPressHandler buttonPressHandler,
                                LampBindingHandler lampBindingHandler,
                                LampUnlinkHandler lampUnlinkHandler) {
