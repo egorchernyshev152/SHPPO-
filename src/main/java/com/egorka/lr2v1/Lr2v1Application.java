@@ -22,15 +22,13 @@ public class Lr2v1Application {
         System.out.println();
 
         Scanner scanner = new Scanner(System.in);
-        ControlPanelProxyImpl proxy = new ControlPanelProxyImpl(controlPanel);
+        ControlPanelProxyImpl proxy = context.getBean(ControlPanelProxyImpl.class,controlPanel);
 
         System.out.println("Сгенерирована панель управления:");
         proxy.visualize();
 
-        RequestHandlerChain handlerChain = new RequestHandlerChain();
-        handlerChain.addHandler(new ButtonPressHandler());
-        handlerChain.addHandler(new LampBindingHandler());
-        handlerChain.addHandler(new LampUnlinkHandler());
+        RequestHandlerChain handlerChain = context.getBean(RequestHandlerChain.class);
+
 
         while (true) {
             System.out.println("          Меню:");

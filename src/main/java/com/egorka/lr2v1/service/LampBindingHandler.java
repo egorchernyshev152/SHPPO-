@@ -1,7 +1,9 @@
 package com.egorka.lr2v1.service;
 
-import java.util.Scanner;
+import org.springframework.stereotype.Service;
 
+import java.util.Scanner;
+@Service
 public class LampBindingHandler implements RequestHandler {
 
     @Override

@@ -1,9 +1,11 @@
 package com.egorka.lr2v1.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Scanner;
 
 import static com.egorka.lr2v1.service.Menu.requestIntegerInput;
-
+@Service
 public class ButtonPressHandler implements RequestHandler {
 
     @Override
