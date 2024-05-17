@@ -2,6 +2,9 @@ package com.egorka.lr2v1.service;
 
 import com.egorka.lr2v1.model.Button;
 import com.egorka.lr2v1.model.Lamp;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,22 +16,29 @@ import static com.egorka.lr2v1.service.Menu.requestIntegerInput;
 
 
 //todo обсервер не более 1 раза , меню отдельный класс и прокси и из мейна туда методы,нормальный прокси, найти структырный паттерн
-public class ControlPanel implements ControlPanelProxy{ // version 1
+@Service
+public class ControlPanel implements ControlPanelProxy { // version 1
     private final int width;
     private final int height;
     private final List<Button> buttons;
     private final List<Lamp> lamps;
+    @Autowired
+    private LampFactory lampFactory;
 
     public Button createButton(int x, int y) {
+
         return ButtonBuilder.builder().setX(x).setY(y).build();
     }
-    public ControlPanel(int width, int height) {
-        this.width = width;
-        this.height = height;
+
+    public ControlPanel() {
+        this.width = 3;
+        this.height = 3;
         this.buttons = new ArrayList<>();
         this.lamps = new ArrayList<>();
-        LampFactory lampFactory = LampFactoryImpl.getInstance(); // Используем service.LampFactory
+    }
 
+    @PostConstruct
+    public void init() {
         Random random = new Random();
 
         // Генерация кнопок
@@ -65,7 +75,6 @@ public class ControlPanel implements ControlPanelProxy{ // version 1
                 button.registerObserver(lamp); // Добавляем лампу к текущей кнопке
             }
         }
-
     }
 
     public void visualize() {
@@ -85,11 +94,11 @@ public class ControlPanel implements ControlPanelProxy{ // version 1
 
                 // Проверяем наличие лампы в текущей ячейке
                 for (Lamp lamp : lamps) {
-                        if ((lamp.getX() == x) && (lamp.getY() == y)) { // Проверяем, соответствуют ли координаты лампы текущим координатам ячейки
-                            symbol = lamp.isActive() ? "Л_" + lamp.getColor().charAt(0) : "Л_"; // Определяем символ для отображения лампы в зависимости от того, активна ли лампа или нет
-                            break; // Прекращаем поиск ламп в текущей ячейке, т.к. она уже найдена
-                        }
+                    if ((lamp.getX() == x) && (lamp.getY() == y)) { // Проверяем, соответствуют ли координаты лампы текущим координатам ячейки
+                        symbol = lamp.isActive() ? "Л_" + lamp.getColor().charAt(0) : "Л_"; // Определяем символ для отображения лампы в зависимости от того, активна ли лампа или нет
+                        break; // Прекращаем поиск ламп в текущей ячейке, т.к. она уже найдена
                     }
+                }
 
                 System.out.print(buttonExists ? symbol + " " : "Л_ "); // Отображаем символ кнопки или лампы в текущей ячейке
             }
@@ -112,7 +121,7 @@ public class ControlPanel implements ControlPanelProxy{ // version 1
         }
 
         for (Button button : buttons) {
-            if ((button.getX() == x ) && (button.getY() == y )) { // Увеличиваем x и y на 1 для сопоставления с координатами кнопки
+            if ((button.getX() == x) && (button.getY() == y)) { // Увеличиваем x и y на 1 для сопоставления с координатами кнопки
                 if (button.isPressed()) {
                     button.release(); // Если кнопка уже нажата, освобождаем ее
                 } else {
