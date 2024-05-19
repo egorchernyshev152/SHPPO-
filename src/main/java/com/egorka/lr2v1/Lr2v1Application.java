@@ -5,6 +5,7 @@ import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
 import java.util.Scanner;
 import static com.egorka.lr2v1.service.Menu.requestIntegerInput;
 
@@ -13,6 +14,7 @@ public class Lr2v1Application {
 
     public static void main(String[] args)
     {
+
         ConfigurableApplicationContext context = SpringApplication.run(Lr2v1Application.class, args);
         ControlPanel controlPanel = context.getBean(ControlPanel.class);
 
