@@ -14,8 +14,6 @@ import java.util.Scanner;
 
 import static com.egorka.lr2v1.service.Menu.requestIntegerInput;
 
-
-//todo обсервер не более 1 раза , меню отдельный класс и прокси и из мейна туда методы,нормальный прокси, найти структырный паттерн
 @Service
 public class ControlPanel implements ControlPanelProxy { // version 1
     private final int width;

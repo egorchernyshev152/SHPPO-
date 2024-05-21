@@ -1,7 +1,5 @@
 package com.egorka.lr2v1.service;
 
-import com.egorka.lr2v1.service.*;
-
 import java.util.Scanner;
 
 public class Menu {
