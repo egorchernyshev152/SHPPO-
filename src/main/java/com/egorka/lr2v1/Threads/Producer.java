@@ -30,6 +30,7 @@ public class Producer implements Runnable {
 
             try
             {
+                System.out.println("Продюсер добавил запрос" + choice + "в очередь задач");
                 // Добавляем запрос в очередь задач
                 taskQueue.put(new Task(choice));
                 if (choice == 4) {
