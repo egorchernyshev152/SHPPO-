@@ -5,4 +5,5 @@ public interface ControlPanelProxy {
     void pressButton(int x, int y);
     void requestLampBinding();
     void requestLampUnlink();
+    void shutdown();
 }

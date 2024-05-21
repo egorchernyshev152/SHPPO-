@@ -180,6 +180,11 @@ public class ControlPanel implements ControlPanelProxy { // version 1
 
     }
 
+    @Override
+    public void shutdown() {
+
+    }
+
     private boolean isLamp(int x, int y) {
         for (Lamp lamp : lamps) {
             if (lamp.getX() == x && lamp.getY() == y) {
