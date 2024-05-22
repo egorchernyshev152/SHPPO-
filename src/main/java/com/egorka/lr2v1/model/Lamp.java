@@ -23,6 +23,6 @@ public class Lamp extends PanelElement implements ButtonObserver {
     @Override
     public void buttonClicked() {
         this.active = !active;
-        System.out.println(String.format("Получено событие через наблюдателя. Лампа %s %s перешла в состояние active = %s", getX(),getY(),active));
+        System.out.println(String.format("Получено событие через наблюдателя. Лампа (%s, %s) перешла в состояние active = %s", getX(),getY(),active));
     }
 }

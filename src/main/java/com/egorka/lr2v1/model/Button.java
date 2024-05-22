@@ -18,7 +18,7 @@ public class Button extends PanelElement {
     public void registerObserver(ButtonObserver observer) {
         if (!observers.contains(observer)) {
             observers.add(observer);
-            System.out.println(String.format("К кнопке добавлен новый наблюдатель! Количество наблюдателей кнопки %s %s = %s", getX(), getY(), observers.size()));
+            System.out.println(String.format("К кнопке добавлен новый наблюдатель! Количество наблюдателей кнопки (%s, %s) = %s", getX(), getY(), observers.size()));
         } else {
             System.out.println("Эта кнопка уже привязана к лампе.");
         }

@@ -16,6 +16,7 @@ import java.util.concurrent.BlockingQueue;
 public class Lr2v1Application {
 
     public static void main(String[] args) {
+        // Инициализация Spring Boot контекста
         ConfigurableApplicationContext context = SpringApplication.run(Lr2v1Application.class, args);
         ControlPanel controlPanel = context.getBean(ControlPanel.class);
 
@@ -25,6 +26,7 @@ public class Lr2v1Application {
         System.out.println("                > ^ <");
         System.out.println();
 
+        // Инициализация компонентов
         Scanner scanner = new Scanner(System.in);
         ControlPanelProxyImpl proxy = context.getBean(ControlPanelProxyImpl.class, controlPanel);
 
@@ -32,19 +34,22 @@ public class Lr2v1Application {
         proxy.visualize();
 
         RequestHandlerChain handlerChain = context.getBean(RequestHandlerChain.class);
-
+        // Создание очереди задач
         BlockingQueue<Task> taskQueue = new ArrayBlockingQueue<>(10);
+        BlockingQueue<Boolean> confirmationQueue = new ArrayBlockingQueue<>(10);
 
         // Создаем и запускаем потоки производителей и потребителей
-        Thread producerThread = new Thread(new Producer(taskQueue, scanner));
-        Thread consumerThread = new Thread(new Consumer(taskQueue, proxy, handlerChain));
+        Thread producerThread = new Thread(new Producer(taskQueue, confirmationQueue, scanner));
+        Thread consumerThread = new Thread(new Consumer(taskQueue, confirmationQueue, proxy, handlerChain));
 
         producerThread.start();
         consumerThread.start();
 
         try {
+            // Ожидание завершения работы потоков
             producerThread.join();
             consumerThread.join();
+            // Обработка прерывания
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -52,3 +57,5 @@ public class Lr2v1Application {
         System.out.println("Программа завершена.");
     }
 }
+
+
