@@ -3,7 +3,7 @@ package com.egorka.lr2v1.service;
 
 import com.egorka.lr2v1.model.Button;
 import org.springframework.stereotype.Service;
-@Service
+//@Service
 public class ButtonBuilder {
     private int x;
     private int y;

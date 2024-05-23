@@ -18,7 +18,7 @@ public class Lr2v1Application {
     public static void main(String[] args) {
         // Инициализация Spring Boot контекста
         ConfigurableApplicationContext context = SpringApplication.run(Lr2v1Application.class, args);
-        ControlPanel controlPanel = context.getBean(ControlPanel.class);
+//        ControlPanel controlPanel = context.getBean(ControlPanel.class);
 
         System.out.println("Добро пожаловать в программу управления!");
         System.out.println("                /\\_/\\");
