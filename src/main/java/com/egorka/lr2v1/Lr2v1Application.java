@@ -16,7 +16,7 @@ import java.util.concurrent.BlockingQueue;
 public class Lr2v1Application {
 
     public static void main(String[] args) {
-        // Инициализация Spring Boot контекста
+        // Инициализация Spring Boot контекстаq
         ConfigurableApplicationContext context = SpringApplication.run(Lr2v1Application.class, args);
         ControlPanel controlPanel = context.getBean(ControlPanel.class);
 
