@@ -31,7 +31,7 @@ public class ControlPanelProxyImpl implements ControlPanelProxy{
         }
     }
 
-    private synchronized void initialize() {
+    private void initialize() {
         if (!initialized) {
             logger.info("Инициализация панели управления...");
             initialized = true;
@@ -39,14 +39,14 @@ public class ControlPanelProxyImpl implements ControlPanelProxy{
     }
 
     @Override
-    public synchronized void visualize() {
+    public void visualize() {
         initialize();
         controlPanel.visualize();
         cache.put("visualize", "Панель управления отображена");
     }
 
     @Override
-    public synchronized void pressButton(int x, int y) {
+    public void pressButton(int x, int y) {
         if (checkAccess()) {
             logger.info(String.format("Кнопка нажата в координатах (%s, %s)...", x, y));
             controlPanel.pressButton(x, y);
@@ -58,7 +58,7 @@ public class ControlPanelProxyImpl implements ControlPanelProxy{
     }
 
     @Override
-    public synchronized void requestLampBinding() {
+    public void requestLampBinding() {
         if (checkAccess()) {
             logger.info("Запрос на привязку лампы...");
             controlPanel.requestLampBinding();

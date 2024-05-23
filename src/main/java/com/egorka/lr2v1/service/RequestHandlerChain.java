@@ -12,15 +12,6 @@ public class RequestHandlerChain {
     @Autowired
     private final List<RequestHandler> handlers = new ArrayList<>();
 
-    public RequestHandlerChain(ButtonPressHandler buttonPressHandler,
-                               LampBindingHandler lampBindingHandler,
-                               LampUnlinkHandler lampUnlinkHandler) {
-        handlers.add(buttonPressHandler);
-        handlers.add(lampBindingHandler);
-        handlers.add(lampUnlinkHandler);
-    }
-
-
     public void handleRequest(int choice, ControlPanelProxy proxy, Scanner scanner) {
         for (RequestHandler handler : handlers) {
             handler.handleRequest(choice, proxy, scanner);

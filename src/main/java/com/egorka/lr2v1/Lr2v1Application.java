@@ -28,7 +28,7 @@ public class Lr2v1Application {
 
         // Инициализация компонентов
         Scanner scanner = new Scanner(System.in);
-        ControlPanelProxyImpl proxy = context.getBean(ControlPanelProxyImpl.class, controlPanel);
+        ControlPanelProxyImpl proxy = context.getBean(ControlPanelProxyImpl.class);
 
         System.out.println("Сгенерирована панель управления:");
         proxy.visualize();
@@ -55,6 +55,7 @@ public class Lr2v1Application {
         }
 
         System.out.println("Программа завершена.");
+        System.exit(0);
     }
 }
 

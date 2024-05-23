@@ -20,7 +20,8 @@ public class Consumer implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run()
+    {
         try {
             while (true) {
                 // Извлечение задачи из очереди
@@ -30,21 +31,15 @@ public class Consumer implements Runnable {
                 switch (choice) {
                     case 1:
                         // Обработка нажатия кнопки
-                        synchronized (System.out) {
                             handlerChain.handleRequest(1, proxy, new Scanner(System.in));
-                        }
                         break;
                     case 2:
                         // Привязка кнопки к лампе
-                        synchronized (System.out) {
                             handlerChain.handleRequest(2, proxy, new Scanner(System.in));
-                        }
                         break;
                     case 3:
                         // Отвязка кнопки от лампы
-                        synchronized (System.out) {
                             handlerChain.handleRequest(3, proxy, new Scanner(System.in));
-                        }
                         break;
                     case 4:
                         // Завершение работы
@@ -57,7 +52,8 @@ public class Consumer implements Runnable {
             }
         }
         // Обработка прерывания
-        catch (InterruptedException e) {
+        catch (InterruptedException e)
+        {
             Thread.currentThread().interrupt();
         }
     }

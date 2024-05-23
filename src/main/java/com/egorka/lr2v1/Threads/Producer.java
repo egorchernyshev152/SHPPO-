@@ -17,10 +17,10 @@ public class Producer implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         while (true) {
             int choice;
-            synchronized (System.out) {
+
                 System.out.println("          Меню:");
                 System.out.println("1. Нажать на кнопку");
                 System.out.println("2. Привязать кнопку к лампе");
@@ -35,18 +35,26 @@ public class Producer implements Runnable {
                     }
                 } while (choice < 1 || choice > 4);
 
-            }
+
 
             try {
+//        или     synchronized (taskQueue)
+//                {
+//                    taskQueue.put(new Task(choice));
+//                    System.out.println("Производитель добавил запрос: '" + choice + "' в очередь задач");
+//                }
                 // Добавление задачи в очередь
                 taskQueue.put(new Task(choice));
                 System.out.println("Производитель добавил запрос: '" + choice + "' в очередь задач");
-                if (choice == 4) {
+                if (choice == 4)
+                {
                     break; // Завершение работы при выборе "Выйти"
                 }
                 confirmationQueue.take(); // Ожидаем подтверждения от потребителя
                 // Обработка прерывания
-            } catch (InterruptedException e) {
+            }
+            catch (InterruptedException e)
+            {
                 Thread.currentThread().interrupt();
             }
         }
