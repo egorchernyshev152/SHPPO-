@@ -20,7 +20,6 @@ public class Producer implements Runnable {
     public synchronized void run() {
         while (true) {
             int choice;
-
                 System.out.println("          Меню:");
                 System.out.println("1. Нажать на кнопку");
                 System.out.println("2. Привязать кнопку к лампе");
@@ -34,8 +33,6 @@ public class Producer implements Runnable {
                         System.out.println("Неверный выбор. Повторите ввод.");
                     }
                 } while (choice < 1 || choice > 4);
-
-
 
             try {
 //        или     synchronized (taskQueue)

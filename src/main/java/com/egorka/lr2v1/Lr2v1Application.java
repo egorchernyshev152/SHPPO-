@@ -16,7 +16,7 @@ import java.util.concurrent.BlockingQueue;
 public class Lr2v1Application {
 
     public static void main(String[] args) {
-        // Инициализация Spring Boot контекстаq
+        // Инициализация Spring Boot контекста
         ConfigurableApplicationContext context = SpringApplication.run(Lr2v1Application.class, args);
         ControlPanel controlPanel = context.getBean(ControlPanel.class);
 
@@ -55,7 +55,6 @@ public class Lr2v1Application {
         }
 
         System.out.println("Программа завершена.");
-        System.exit(0);
     }
 }
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 @Service
-public class RequestHandlerChain {
+public class RequestHandlerChain implements RequestHandler {
     @Autowired
     private final List<RequestHandler> handlers = new ArrayList<>();
 
