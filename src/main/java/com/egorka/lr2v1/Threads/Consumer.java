@@ -36,7 +36,6 @@ public class Consumer implements Runnable {
                     System.out.println("Завершение работы потребителя.");
                     return;
                 }
-
                 else
                 {
                     handlerChain.handleRequest(choice, proxy, new Scanner(System.in));
