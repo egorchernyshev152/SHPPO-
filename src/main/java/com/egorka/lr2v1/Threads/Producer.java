@@ -26,15 +26,19 @@ public class Producer implements Runnable {
                 System.out.println("3. Отвязать кнопку от лампы");
                 System.out.println("4. Выйти");
 
-                do {
+                do
+                {
                     // Запрос ввода от пользователя
                     choice = Menu.requestIntegerInput(scanner, "Ваше действие:");
-                    if (choice < 1 || choice > 4) {
+                    if (choice < 1 || choice > 4)
+                    {
                         System.out.println("Неверный выбор. Повторите ввод.");
                     }
-                } while (choice < 1 || choice > 4);
+                }
+                while (choice < 1 || choice > 4);
 
-            try {
+            try
+            {
 //        или     synchronized (taskQueue)
 //                {
 //                    taskQueue.put(new Task(choice));
