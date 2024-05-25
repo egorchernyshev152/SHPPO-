@@ -3,11 +3,14 @@ package com.egorka.lr2v1;
 import com.egorka.lr2v1.Threads.Consumer;
 import com.egorka.lr2v1.Threads.Producer;
 import com.egorka.lr2v1.Threads.Task;
-import com.egorka.lr2v1.service.*;
+import com.egorka.lr2v1.service.ControlPanelProxyImpl;
+import com.egorka.lr2v1.service.RequestHandlerChain;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -18,7 +21,6 @@ public class Lr2v1Application {
     public static void main(String[] args) {
         // Инициализация Spring Boot контекста
         ConfigurableApplicationContext context = SpringApplication.run(Lr2v1Application.class, args);
-//        ControlPanel controlPanel = context.getBean(ControlPanel.class);
 
         System.out.println("Добро пожаловать в программу управления!");
         System.out.println("                /\\_/\\");
@@ -34,13 +36,15 @@ public class Lr2v1Application {
         proxy.visualize();
 
         RequestHandlerChain handlerChain = context.getBean(RequestHandlerChain.class);
+
         // Создание очереди задач
         BlockingQueue<Task> taskQueue = new ArrayBlockingQueue<>(10);
-        BlockingQueue<Boolean> confirmationQueue = new ArrayBlockingQueue<>(10);
+        Object confirmationLock = new Object();
 
         // Создаем и запускаем потоки производителей и потребителей
-        Thread producerThread = new Thread(new Producer(taskQueue, confirmationQueue, scanner));
-        Thread consumerThread = new Thread(new Consumer(taskQueue, confirmationQueue, proxy, handlerChain));
+        Thread producerThread = new Thread(new Producer(taskQueue, confirmationLock, scanner));
+
+        Thread consumerThread = new Thread(new Consumer(taskQueue, confirmationLock, proxy, handlerChain));
 
         producerThread.start();
         consumerThread.start();
@@ -57,5 +61,3 @@ public class Lr2v1Application {
         System.out.println("Программа завершена.");
     }
 }
-
-

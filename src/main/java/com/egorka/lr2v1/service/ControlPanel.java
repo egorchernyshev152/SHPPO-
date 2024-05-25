@@ -15,20 +15,23 @@ import java.util.Scanner;
 import static com.egorka.lr2v1.service.Menu.requestIntegerInput;
 
 @Service
-public class ControlPanel implements ControlPanelProxy { // version 1
+public class ControlPanel
+{
     private final int width;
     private final int height;
     private final List<Button> buttons;
     private final List<Lamp> lamps;
+
     @Autowired
     private LampFactory lampFactory;
-
-    public Button createButton(int x, int y) {
+    public Button createButton(int x, int y)
+    {
 
         return ButtonBuilder.builder().setX(x).setY(y).build();
     }
 
-    public ControlPanel() {
+    public ControlPanel()
+    {
         this.width = 5;
         this.height = 5;
         this.buttons = new ArrayList<>();
@@ -173,15 +176,7 @@ public class ControlPanel implements ControlPanelProxy { // version 1
     }
 
 
-    @Override
-    public void requestLampUnlink() {
 
-    }
-
-    @Override
-    public void shutdown() {
-
-    }
 
     private boolean isLamp(int x, int y) {
         for (Lamp lamp : lamps) {

@@ -72,7 +72,6 @@ public class ControlPanelProxyImpl implements ControlPanelProxy{
     @Override
     public void requestLampUnlink() {
         Scanner scanner = new Scanner(System.in);
-        Menu menu = new Menu();
 
         int buttonX = Menu.requestIntegerInput(scanner, "Введите координату кнопки (X):");
         int buttonY = Menu.requestIntegerInput(scanner, "Введите координату кнопки (Y):");
