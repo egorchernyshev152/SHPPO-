@@ -7,14 +7,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.Scanner;
+
 @Service
-public class ControlPanelProxyImpl implements ControlPanelProxy{
+public class ControlPanelProxyImpl implements ControlPanelProxy
+{
     private final ControlPanel controlPanel;
     private final Logger logger;
     private final Map<String, String> cache; // Кэш для хранения результатов операций
     private boolean initialized = false;
+
     @Autowired
-    public ControlPanelProxyImpl(ControlPanel controlPanel) {
+    public ControlPanelProxyImpl(ControlPanel controlPanel)
+    {
         this.controlPanel = controlPanel;
         this.logger = Logger.getLogger(ControlPanelProxyImpl.class.getName());
         this.cache = new HashMap<>();

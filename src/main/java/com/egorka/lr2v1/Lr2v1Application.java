@@ -14,7 +14,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-
+//todo:put синхронизировать либо строчку либо метод исправить чейн и понимать как и почему работает спринг у нас
 @SpringBootApplication
 public class Lr2v1Application {
 
@@ -49,12 +49,15 @@ public class Lr2v1Application {
         producerThread.start();
         consumerThread.start();
 
-        try {
+        try
+        {
             // Ожидание завершения работы потоков
             producerThread.join();
             consumerThread.join();
             // Обработка прерывания
-        } catch (InterruptedException e) {
+        }
+        catch (InterruptedException e)
+        {
             Thread.currentThread().interrupt();
         }
 
